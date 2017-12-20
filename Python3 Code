@@ -45,3 +45,19 @@ def dow_births(x):
         return birth_per_week
 cdc_day_births = dow_births(cdc_list)
 print(cdc_day_births)
+
+def calc_counts(x,y):
+    total = {}
+    for i in x:
+        string1 = i[y]
+        string2 = i[4]
+        if string1 in total:
+            total[string1] += string2
+        else:
+            total[string1] = string2
+    return total
+
+cdc_year_births = calc_counts(cdc_list, 0)
+cdc_month_births = calc_counts(cdc_list, 1)
+cdc_dom_births = calc_counts(cdc_list, 2)
+cdc_dow_births = calc_counts(cdc_list, 3)
