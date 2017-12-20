@@ -1,0 +1,47 @@
+x = open("US_births_1994-2003_CDC_NCHS.csv", "r")
+f = x.read()
+f1 = f.split("\n")
+print(f1[10])
+
+def read_csv(x):
+    final_list = []
+    y = open(x)
+    yy = y.read()
+    y1 = yy.split("\n")
+    y1 = y1[1:]
+    for i in y1:
+        y2 = i.split(",")
+        int_lists = []
+        for j in y2:
+            int_lists.append(int(j))
+        final_list.append(int_lists)
+    return final_list
+
+cdc_list = read_csv("US_births_1994-2003_CDC_NCHS.csv")
+print(cdc_list[0:10])
+
+def month_births(x):
+    birth_per_month = {}
+    for i in x:
+        string1 = i[1]
+        string2 = i[4]
+        if string1 in birth_per_month:
+            birth_per_month[string1] += string2
+        else:
+            birth_per_month[string1] = string2
+    return birth_per_month
+cdc_month_births = month_births(cdc_list)
+print(cdc_month_births)
+
+def dow_births(x):
+    birth_per_week = {}
+    for i in x:
+        string1 = i[3]
+        string2 = i[4]
+        if string1 in birth_per_week:
+            birth_per_week[string1] += string2
+        else:
+            birth_per_week[string1] = string2
+        return birth_per_week
+cdc_day_births = dow_births(cdc_list)
+print(cdc_day_births)
